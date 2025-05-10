@@ -31,4 +31,9 @@ A web-based unit conversion tool tailored for aviation professionals.
 Created by **Ergin SABANCI**  
 📎 GitHub: [@erginsa](https://github.com/erginsa)
 
+
+## 📦 Available Versions
+
+- `app.py`: Web-based version (Streamlit)
+- `converter_gui.py`: Desktop version using Tkinter (Python only)
 ---
