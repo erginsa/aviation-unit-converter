@@ -1,7 +1,7 @@
 import streamlit as st
-
+st.set_page_config(page_title="Aviation Unit Converter", page_icon="✈️")
 """
-Aviation Unit Converter GUI
+Aviation Unit Converter Web App
 ----------------------------
 
 This Python application provides a graphical interface (Tkinter) to convert between 
@@ -18,8 +18,6 @@ Note:
 - All fields are readonly dropdowns to ensure input consistency.
 
 """
-
-st.set_page_config(page_title="Aviation Unit Converter", page_icon="✈️")
 
 st.title("✈️ Aviation Unit Converter")
 st.markdown("This tool allows aviation-specific unit conversions. Fuel flow calculations are based on **JET-A1** fuel density.")
