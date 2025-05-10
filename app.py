@@ -122,3 +122,33 @@ if st.button("Convert"):
         st.success(f"Result: {round(result, 4)} {to_unit}")
     else:
         st.error("Conversion not available for selected units.")
+
+
+# Initialize session state history
+if "history" not in st.session_state:
+    st.session_state.history = []
+
+# Conversion logic
+if st.button("Convert"):
+    if category == "Temperature":
+        result = convert_temperature(value, from_unit, to_unit)
+    else:
+        try:
+            result = value * conversion_rates[category][from_unit][to_unit]
+        except KeyError:
+            result = None
+
+    if result is not None:
+        st.success(f"Result: {round(result, 4)} {to_unit}")
+        # Save to history
+        st.session_state.history.append(
+            f"{value} {from_unit} → {round(result, 4)} {to_unit} ({category})"
+        )
+    else:
+        st.error("Conversion not available for selected units.")
+
+# Show history
+if st.session_state.history:
+    st.markdown("### 🔁 Conversion History")
+    for entry in reversed(st.session_state.history[-10:]):
+        st.write("- ", entry)
