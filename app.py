@@ -109,27 +109,12 @@ to_unit = st.selectbox("To unit", [u for u in units if u != from_unit])
 
 value = st.number_input("Enter value", min_value=0.0, format="%.4f")
 
-if st.button("Convert"):
-    if category == "Temperature":
-        result = convert_temperature(value, from_unit, to_unit)
-    else:
-        try:
-            result = value * conversion_rates[category][from_unit][to_unit]
-        except KeyError:
-            result = None
-
-    if result is not None:
-        st.success(f"Result: {round(result, 4)} {to_unit}")
-    else:
-        st.error("Conversion not available for selected units.")
-
-
 # Initialize session state history
 if "history" not in st.session_state:
     st.session_state.history = []
 
-# Conversion logic
-if st.button("Convert"):
+# Single Convert Button with History
+if st.button("Convert", key="convert_button"):
     if category == "Temperature":
         result = convert_temperature(value, from_unit, to_unit)
     else:
@@ -140,7 +125,6 @@ if st.button("Convert"):
 
     if result is not None:
         st.success(f"Result: {round(result, 4)} {to_unit}")
-        # Save to history
         st.session_state.history.append(
             f"{value} {from_unit} → {round(result, 4)} {to_unit} ({category})"
         )
