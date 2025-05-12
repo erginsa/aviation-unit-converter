@@ -12,9 +12,11 @@ if theme == "Dark":
             background-color: #1e1e1e;
             color: white;
         }
+        label, .stSelectbox label, .stTextInput label, .stNumberInput label {
+            color: white !important;
+        }
         </style>
     """, unsafe_allow_html=True)
-
 else:
     st.markdown("""
             <style>
