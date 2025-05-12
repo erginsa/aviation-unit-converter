@@ -13,26 +13,40 @@ if theme == "Dark":
             color: white;
         }
 
-        label, .stSelectbox label, .stTextInput label, .stNumberInput label, .css-1cpxqw2 {
-            color: white !important;
+        .history-box {
+            background-color: #2b2b2b;
+            color: white;
+            padding: 1em;
+            border-radius: 8px;
+            font-size: 1.05rem;
         }
 
-        /* Buton stilleri (Dark Mode) */
-        button[kind="secondary"] {
-            background-color: #333333 !important;
-            color: white !important;
-            border: 1px solid #777 !important;
-        }
-
-        button[kind="secondary"]:hover {
-            background-color: #FF4B4B !important;
-            color: white !important;
-            border: 1px solid #FF4B4B !important;
+        .history-box div {
+            margin-bottom: 6px;
         }
         </style>
     """, unsafe_allow_html=True)
 else:
-    st.markdown("""<style>.stApp { background-color: #f9f9f9; color: black; }</style>""", unsafe_allow_html=True)
+    st.markdown("""
+            <style>
+            .stApp {
+                background-color: #f9f9f9;
+                color: black;
+            }
+
+            .history-box {
+                background-color: #f0f2f6;
+                color: black;
+                padding: 1em;
+                border-radius: 8px;
+                font-size: 1.05rem;
+            }
+
+            .history-box div {
+                margin-bottom: 6px;
+            }
+            </style>
+        """, unsafe_allow_html=True)
 
 
 st.markdown("""
