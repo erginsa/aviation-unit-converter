@@ -158,12 +158,6 @@ if convert_clicked:
     else:
         st.error("Conversion not available for selected units.")
 
-# Reset Logic
-if reset_clicked:
-    st.session_state["from_unit"] = units[0]
-    st.session_state["to_unit"] = units[1 if len(units) > 1 else 0]
-    st.session_state["input_value"] = 0.0
-    st.session_state["history"] = []
 
 # Show history
 if st.session_state.history:
