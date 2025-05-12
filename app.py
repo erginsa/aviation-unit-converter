@@ -12,18 +12,6 @@ if theme == "Dark":
             background-color: #1e1e1e;
             color: white;
         }
-
-        .history-box {
-            background-color: #2b2b2b;
-            color: white;
-            padding: 1em;
-            border-radius: 8px;
-            font-size: 1.05rem;
-        }
-
-        .history-box div {
-            margin-bottom: 6px;
-        }
         </style>
     """, unsafe_allow_html=True)
 
@@ -33,18 +21,6 @@ else:
             .stApp {
                 background-color: #f9f9f9;
                 color: black;
-            }
-
-            .history-box {
-                background-color: #f0f2f6;
-                color: black;
-                padding: 1em;
-                border-radius: 8px;
-                font-size: 1.05rem;
-            }
-
-            .history-box div {
-                margin-bottom: 6px;
             }
             </style>
         """, unsafe_allow_html=True)
@@ -64,21 +40,6 @@ st.markdown("""
     button[kind="secondary"]:hover {
         background-color: #cc0000 !important;
         color: white !important;
-    }
-    </style>
-""", unsafe_allow_html=True)
-
-
-st.markdown("""
-    <style>
-    .history-box {
-        background-color: #f0f2f6;
-        padding: 1em;
-        border-radius: 8px;
-        font-size: 1.05rem;
-    }
-    .history-box div {
-        margin-bottom: 6px;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -229,13 +190,5 @@ if convert_clicked:
 # Show history
 if st.session_state.history:
     st.markdown("### 🔁 Conversion History")
-
-    text_color = "white" if theme == "Dark" else "black"
-
-    st.markdown(
-        f"<div class='history-box'>" +
-        "".join([f"<div style='color:{text_color};'>- {entry}</div>" for entry in
-                 reversed(st.session_state.history[-10:])]) +
-        "</div>",
-        unsafe_allow_html=True
-    )
+    for entry in reversed(st.session_state.history[-10:]):
+        st.write(f"- {entry}")
