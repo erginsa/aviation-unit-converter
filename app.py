@@ -160,11 +160,11 @@ else:
 col1, col2, col3 = st.columns([1.5, 1, 1.5])
 
 with col1:
-    from_unit = st.selectbox("From unit", units, key="from_unit")
+    from_unit = st.selectbox("From unit", units, key="from_unit", index=0)
 with col2:
     value = st.number_input("Enter value", min_value=0.0, step=0.01, format="%.2f", key="input_value")
 with col3:
-    to_unit = st.selectbox("To unit", [u for u in units if u != st.session_state.from_unit], key="to_unit")
+    to_unit = st.selectbox("To unit", [u for u in units if u != st.session_state.from_unit], key="to_unit", index=1 if len(units) > 1 else 0)
 
 
 # Initialize session state history
@@ -177,8 +177,6 @@ with colA:
     convert_clicked = st.button("Convert", key="convert_button")
 with colB:
     if st.button("Reset"):
-        st.session_state["from_unit"] = units[0]
-        st.session_state["to_unit"] = units[1 if len(units) > 1 else 0]
         st.session_state["input_value"] = 0.0
         st.session_state["history"] = []
         st.experimental_rerun()
