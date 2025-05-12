@@ -1,5 +1,22 @@
 import streamlit as st
 st.set_page_config(page_title="Aviation Unit Converter", page_icon="✈️")
+
+with st.sidebar:
+    theme = st.radio("🌗 Theme", ["Light", "Dark"], horizontal=True)
+
+if theme == "Dark":
+    st.markdown("""
+        <style>
+        .stApp { background-color: #1e1e1e; color: white; }
+        </style>
+    """, unsafe_allow_html=True)
+else:
+    st.markdown("""
+        <style>
+        .stApp { background-color: #f9f9f9; color: black; }
+        </style>
+    """, unsafe_allow_html=True)
+
 """
 Aviation Unit Converter Web App
 ----------------------------
@@ -107,21 +124,26 @@ else:
 col1, col2, col3 = st.columns([1.5, 1, 1.5])
 
 with col1:
-    from_unit = st.selectbox("From unit", units)
-
+    from_unit = st.selectbox("From unit", units, key="from_unit")
 with col2:
-    value = st.number_input("Enter value", min_value=0.0, step=0.01, format="%.2f")
-
+    value = st.number_input("Enter value", min_value=0.0, step=0.01, format="%.2f", key="input_value")
 with col3:
-    to_unit = st.selectbox("To unit", [u for u in units if u != from_unit])
+    to_unit = st.selectbox("To unit", [u for u in units if u != st.session_state.from_unit], key="to_unit")
 
 
 # Initialize session state history
 if "history" not in st.session_state:
     st.session_state.history = []
 
-# Single Convert Button with History
-if st.button("Convert", key="convert_button"):
+# Single Convert Button with History and Reset Button
+colA, colB = st.columns([1, 1])
+with colA:
+    convert_clicked = st.button("Convert", key="convert_button")
+with colB:
+    reset_clicked = st.button("Reset", key="reset_button")
+
+# Convert Logic
+if convert_clicked:
     if category == "Temperature":
         result = convert_temperature(value, from_unit, to_unit)
     else:
@@ -138,8 +160,17 @@ if st.button("Convert", key="convert_button"):
     else:
         st.error("Conversion not available for selected units.")
 
+# Reset Logic
+if reset_clicked:
+    st.session_state["from_unit"] = units[0]
+    st.session_state["to_unit"] = units[1 if len(units) > 1 else 0]
+    st.session_state["input_value"] = 0.0
+    st.session_state["history"] = []
+
+
 # Show history
 if st.session_state.history:
     st.markdown("### 🔁 Conversion History")
-    for entry in reversed(st.session_state.history[-10:]):
-        st.write("- ", entry)
+    with st.container():
+        for entry in reversed(st.session_state.history[-10:]):
+            st.markdown(f"- `{entry}`")
