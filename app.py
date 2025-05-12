@@ -36,6 +36,24 @@ else:
 
 
 st.markdown("""
+    <style>
+    button[kind="secondary"] {
+        background-color: #FF4B4B !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 6px;
+        padding: 0.4em 1em;
+        font-weight: bold;
+    }
+
+    button[kind="secondary"]:hover {
+        background-color: #cc0000 !important;
+        color: white !important;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
+st.markdown("""
 Aviation Unit Converter Web App
 ----------------------------
 
