@@ -104,9 +104,16 @@ if category == "Temperature":
 else:
     units = list(conversion_rates[category].keys())
 
-from_unit = st.selectbox("From unit", units)
-value = st.number_input("Enter value", min_value=0.0)
-to_unit = st.selectbox("To unit", [u for u in units if u != from_unit])
+col1, col2, col3 = st.columns([1.5, 1, 1.5])
+
+with col1:
+    from_unit = st.selectbox("From unit", units)
+
+with col2:
+    value = st.number_input("Enter value", min_value=0.0, step=0.01, format="%.2f")
+
+with col3:
+    to_unit = st.selectbox("To unit", [u for u in units if u != from_unit])
 
 
 # Initialize session state history
