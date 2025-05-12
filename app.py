@@ -53,6 +53,22 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
+
+st.markdown("""
+    <style>
+    .history-box {
+        background-color: #f0f2f6;
+        padding: 1em;
+        border-radius: 8px;
+        font-size: 1.05rem;
+    }
+    .history-box div {
+        margin-bottom: 6px;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
+
 st.markdown("""
 Aviation Unit Converter Web App
 ----------------------------
@@ -198,6 +214,9 @@ if convert_clicked:
 # Show history
 if st.session_state.history:
     st.markdown("### 🔁 Conversion History")
-    with st.container():
-        for entry in reversed(st.session_state.history[-10:]):
-            st.markdown(f"- `{entry}`")
+    st.markdown(
+        "<div class='history-box'>" +
+        "".join([f"<div>- {entry}</div>" for entry in reversed(st.session_state.history[-10:])]) +
+        "</div>",
+        unsafe_allow_html=True
+    )
