@@ -179,7 +179,6 @@ with colB:
     if st.button("Reset"):
         st.session_state["input_value"] = 0.0
         st.session_state["history"] = []
-        st.experimental_rerun()
 
 # Convert Logic
 if convert_clicked:
