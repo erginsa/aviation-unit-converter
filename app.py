@@ -105,9 +105,9 @@ else:
     units = list(conversion_rates[category].keys())
 
 from_unit = st.selectbox("From unit", units)
+value = st.number_input("Enter value", min_value=0.0)
 to_unit = st.selectbox("To unit", [u for u in units if u != from_unit])
 
-value = st.number_input("Enter value", min_value=0.0, format="%.4f")
 
 # Initialize session state history
 if "history" not in st.session_state:
