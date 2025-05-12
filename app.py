@@ -177,8 +177,10 @@ with colA:
     convert_clicked = st.button("Convert", key="convert_button")
 with colB:
     if st.button("Reset"):
-        for key in list(st.session_state.keys()):
-            del st.session_state[key]
+        reset_keys = ["from_unit", "to_unit", "input_value", "history"]
+        for key in reset_keys:
+            if key in st.session_state:
+                del st.session_state[key]
         st.experimental_rerun()
 
 # Convert Logic
