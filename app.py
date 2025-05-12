@@ -1,5 +1,4 @@
 import streamlit as st
-import time
 
 st.set_page_config(page_title="Aviation Unit Converter", page_icon="✈️")
 
@@ -13,8 +12,22 @@ if theme == "Dark":
             background-color: #1e1e1e;
             color: white;
         }
-        label, .stSelectbox label, .stTextInput label, .stNumberInput label, .css-1cpxqw2 {  /* input başlıkları */
+
+        label, .stSelectbox label, .stTextInput label, .stNumberInput label, .css-1cpxqw2 {
             color: white !important;
+        }
+
+        /* Buton stilleri (Dark Mode) */
+        button[kind="secondary"] {
+            background-color: #333333 !important;
+            color: white !important;
+            border: 1px solid #777 !important;
+        }
+
+        button[kind="secondary"]:hover {
+            background-color: #FF4B4B !important;
+            color: white !important;
+            border: 1px solid #FF4B4B !important;
         }
         </style>
     """, unsafe_allow_html=True)
