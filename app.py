@@ -26,6 +26,7 @@ if theme == "Dark":
         }
         </style>
     """, unsafe_allow_html=True)
+
 else:
     st.markdown("""
             <style>
@@ -228,9 +229,13 @@ if convert_clicked:
 # Show history
 if st.session_state.history:
     st.markdown("### 🔁 Conversion History")
+
+    text_color = "white" if theme == "Dark" else "black"
+
     st.markdown(
-        "<div class='history-box'>" +
-        "".join([f"<div>- {entry}</div>" for entry in reversed(st.session_state.history[-10:])]) +
+        f"<div class='history-box'>" +
+        "".join([f"<div style='color:{text_color};'>- {entry}</div>" for entry in
+                 reversed(st.session_state.history[-10:])]) +
         "</div>",
         unsafe_allow_html=True
     )
