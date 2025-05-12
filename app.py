@@ -7,7 +7,17 @@ with st.sidebar:
     theme = st.radio("🌗 Theme", ["Light", "Dark"], horizontal=True)
 
 if theme == "Dark":
-    st.markdown("""<style>.stApp { background-color: #1e1e1e; color: white; }</style>""", unsafe_allow_html=True)
+    st.markdown("""
+        <style>
+        .stApp {
+            background-color: #1e1e1e;
+            color: white;
+        }
+        label, .stSelectbox label, .stTextInput label, .stNumberInput label, .css-1cpxqw2 {  /* input başlıkları */
+            color: white !important;
+        }
+        </style>
+    """, unsafe_allow_html=True)
 else:
     st.markdown("""<style>.stApp { background-color: #f9f9f9; color: black; }</style>""", unsafe_allow_html=True)
 
