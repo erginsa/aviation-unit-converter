@@ -135,7 +135,10 @@ colA, colB = st.columns([1, 1])
 with colA:
     convert_clicked = st.button("Convert", key="convert_button")
 with colB:
-    reset_clicked = st.button("Reset", key="reset_button")
+    if st.button("Reset"):
+        for key in list(st.session_state.keys()):
+            del st.session_state[key]
+        st.experimental_rerun()
 
 # Convert Logic
 if convert_clicked:
