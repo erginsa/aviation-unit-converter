@@ -171,14 +171,10 @@ with col3:
 if "history" not in st.session_state:
     st.session_state.history = []
 
-# Single Convert Button with History and Reset Button
-colA, colB = st.columns([1, 1])
-with colA:
-    convert_clicked = st.button("Convert", key="convert_button")
-with colB:
-    if st.button("Reset"):
-        st.session_state["input_value"] = 0.0
-        st.session_state["history"] = []
+# Single Convert Button with History
+
+convert_clicked = st.button("Convert", key="convert_button")
+
 
 # Convert Logic
 if convert_clicked:
