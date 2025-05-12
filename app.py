@@ -1,23 +1,18 @@
 import streamlit as st
+import time
+
 st.set_page_config(page_title="Aviation Unit Converter", page_icon="✈️")
 
 with st.sidebar:
     theme = st.radio("🌗 Theme", ["Light", "Dark"], horizontal=True)
 
 if theme == "Dark":
-    st.markdown("""
-        <style>
-        .stApp { background-color: #1e1e1e; color: white; }
-        </style>
-    """, unsafe_allow_html=True)
+    st.markdown("""<style>.stApp { background-color: #1e1e1e; color: white; }</style>""", unsafe_allow_html=True)
 else:
-    st.markdown("""
-        <style>
-        .stApp { background-color: #f9f9f9; color: black; }
-        </style>
-    """, unsafe_allow_html=True)
+    st.markdown("""<style>.stApp { background-color: #f9f9f9; color: black; }</style>""", unsafe_allow_html=True)
 
-"""
+
+st.markdown("""
 Aviation Unit Converter Web App
 ----------------------------
 
@@ -34,7 +29,7 @@ Note:
 - Temperature conversion is handled separately from the fixed rate dictionary.
 - All fields are readonly dropdowns to ensure input consistency.
 
-"""
+""")
 
 st.title("✈️ Aviation Unit Converter")
 st.markdown("This tool allows aviation-specific unit conversions. Fuel flow calculations are based on **JET-A1** fuel density.")
@@ -166,7 +161,6 @@ if reset_clicked:
     st.session_state["to_unit"] = units[1 if len(units) > 1 else 0]
     st.session_state["input_value"] = 0.0
     st.session_state["history"] = []
-
 
 # Show history
 if st.session_state.history:
